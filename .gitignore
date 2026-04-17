@@ -4,6 +4,7 @@
 !.env.example
 *.log
 .vercel
+node_modules/
 
 # ProRes / large sources — GitHub max 100MB; site uses .mp4 in <video> first
 *.mov
