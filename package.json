@@ -1,0 +1,18 @@
+{
+  "name": "sandunegreafilms",
+  "version": "1.0.0",
+  "description": "Sandu Negrea Films - Portfolio Website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required for vanilla HTML'",
+    "lint": "echo 'No linter configured'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
