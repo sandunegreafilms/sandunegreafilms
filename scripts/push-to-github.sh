@@ -6,7 +6,7 @@
 # Usage:
 #   chmod +x scripts/push-to-github.sh
 #   ./scripts/push-to-github.sh                    # prompts for repo name
-#   GITHUB_REPO_NAME=my-site ./scripts/push-to-github.sh
+#   GITHUB_REPO_NAME=sandunegreafilms ./scripts/push-to-github.sh
 
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -43,13 +43,11 @@ if ! gh auth status >/dev/null 2>&1; then
   exit 1
 fi
 
-REPO_NAME="${GITHUB_REPO_NAME:-}"
-if [ -z "$REPO_NAME" ]; then
-  read -r -p "New GitHub repo name (e.g. sandu-site): " REPO_NAME
-fi
-if [ -z "$REPO_NAME" ]; then
-  echo "Repo name required."
-  exit 1
+if [ -n "${GITHUB_REPO_NAME:-}" ]; then
+  REPO_NAME="$GITHUB_REPO_NAME"
+else
+  read -r -p "New GitHub repo name [sandunegreafilms]: " REPO_NAME
+  REPO_NAME="${REPO_NAME:-sandunegreafilms}"
 fi
 
 if git remote get-url origin >/dev/null 2>&1; then

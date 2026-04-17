@@ -67,11 +67,11 @@ Use **two SSH keys**: one linked to **your** GitHub, one to **Sandu’s** GitHub
 
    Adjust `IdentityFile` paths if your personal key has another name.
 
-4. Point **this repo’s** `origin` at the alias (replace `OWNER` / `REPO`):
+4. Point **this repo’s** `origin` at the alias (owner + repo: **`sandunegreafilms/sandunegreafilms`**):
 
    ```bash
    cd /path/to/Sandu
-   git remote set-url origin git@github.com-sandu:OWNER/REPO.git
+   git remote set-url origin git@github.com-sandu:sandunegreafilms/sandunegreafilms.git
    ```
 
 Other workspaces keep using `git@github.com:user/repo.git` → personal key.
