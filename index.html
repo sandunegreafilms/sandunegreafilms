@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sandu Negrea</title>
+    <meta
+      name="description"
+      content="Sandu Negrea — editor. Work &amp; contact."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- One fixed stack: opacity crossfades on scroll (no hard cuts between sections) -->
+    <div class="bg-stack" aria-hidden="true">
+      <video
+        class="bg-stack__video"
+        data-bg-video
+        data-bg-for="home"
+        autoplay
+        playsinline
+        muted
+        loop
+        preload="auto"
+      >
+        <source
+          src="assets/videos/main-page-home-1_SanduNegreaWebsite_30secLoop_v1.mp4"
+          type="video/mp4"
+        />
+        <source
+          src="assets/videos/main-page-home-1_SanduNegreaWebsite_30secLoop_v1.mov"
+          type="video/quicktime"
+        />
+      </video>
+      <video
+        class="bg-stack__video"
+        data-bg-video
+        data-bg-for="info"
+        autoplay
+        playsinline
+        muted
+        loop
+        preload="auto"
+      >
+        <source
+          src="assets/videos/info-page-contact-1_SanduNegreaWebsite_InfoVid_v1.mp4"
+          type="video/mp4"
+        />
+        <source
+          src="assets/videos/info-page-contact-1_SanduNegreaWebsite_InfoVid_v1.mov"
+          type="video/quicktime"
+        />
+      </video>
+      <video
+        class="bg-stack__video"
+        data-bg-video
+        data-bg-for="portfolio"
+        autoplay
+        playsinline
+        muted
+        loop
+        preload="auto"
+      >
+        <source
+          src="assets/videos/portfolio-page-3__SanduNegreaWebsite_IndexVid_v1.mp4"
+          type="video/mp4"
+        />
+        <source
+          src="assets/videos/portfolio-page-3__SanduNegreaWebsite_IndexVid_v1.mov"
+          type="video/quicktime"
+        />
+      </video>
+    </div>
+
+    <header class="chrome" aria-label="Site header">
+      <a class="chrome__title" href="#home"
+        ><span class="chrome__title-name">Sandu Negrea</span></a
+      >
+      <nav class="chrome__nav" aria-label="Primary">
+        <a class="chrome__nav-link chrome__nav-link--home" href="#home">home</a>
+        <a class="chrome__nav-link" href="#info">info</a>
+        <a class="chrome__nav-link" href="#portfolio">portfolio</a>
+      </nav>
+      <button type="button" class="chrome__sound" data-sound-toggle>
+        Sound: Off
+      </button>
+    </header>
+
+    <main id="main">
+      <section class="page page--home" id="home" data-page-section="home">
+        <div class="page__content page__content--home">
+          <h2 class="visually-hidden">Home</h2>
+        </div>
+      </section>
+
+      <section class="page page--info" id="info" data-page-section="info">
+        <div class="page__content" aria-label="Info">
+          <h2 class="page-heading">info</h2>
+          <article class="info-card">
+            <p>
+              A Hungarian-American director, producer, &amp; editor based in Los
+              Angeles. He works internationally.
+            </p>
+            <p>
+              Select clients include cbs, milk studios, volkswagen, sony,
+              paramount, VOGUE BRASIL, Lamborghini, f1, aprilia, ASICS, DISNEY,
+              TAO GROUP, &amp; SUGAR STUDIOS LA.
+            </p>
+            <p class="info-card__links">
+              <a href="mailto:SANDUNEGREAFILMS@GMAIL.COM"
+                >SANDUNEGREAFILMS@GMAIL.COM</a
+              ><br />
+              <a
+                href="https://www.instagram.com/sandunegrea/"
+                target="_blank"
+                rel="noopener noreferrer me"
+                >@sandunegrea</a
+              >
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="page page--portfolio"
+        id="portfolio"
+        data-page-section="portfolio"
+      >
+        <div class="page__content" aria-label="Portfolio">
+          <h2 class="page-heading">portfolio</h2>
+          <ol class="portfolio-list" id="portfolio-index-list"></ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> <span class="footer__name">Sandu Negrea</span></p>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
