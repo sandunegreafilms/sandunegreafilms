@@ -1,0 +1,5 @@
+# Keep CLI uploads small; GitHub deployments use the repo tree only.
+.git
+**/.git
+*.mov
+.DS_Store
