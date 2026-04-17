@@ -100,6 +100,7 @@
 
   var soundBtn = document.querySelector("[data-sound-toggle]");
   var soundEnabled = true;
+  var audioUnlocked = false;
 
   function setSoundUi() {
     if (!soundBtn) return;
@@ -114,9 +115,10 @@
     for (i = 0; i < videos.length; i++) {
       var v = videos[i];
       if (i === 0) {
-        v.muted = !soundEnabled;
+        var shouldHear = soundEnabled && audioUnlocked;
+        v.muted = !shouldHear;
         v.volume = 0.9;
-        if (soundEnabled) {
+        if (shouldHear) {
           try {
             v.play();
           } catch (_e) {}
@@ -163,6 +165,7 @@
   if (soundBtn) {
     soundBtn.addEventListener("click", function () {
       soundEnabled = !soundEnabled;
+      audioUnlocked = true;
       setSoundUi();
       tryPlayAll();
       applyAudioState();
@@ -176,6 +179,7 @@
 
   /* Browsers block unmuted autoplay until a gesture; first tap/scroll path re-applies audio. */
   function unlockBgAudioFromGesture() {
+    audioUnlocked = true;
     tryPlayAll();
     applyAudioState();
   }
@@ -193,6 +197,6 @@
   window.addEventListener("hashchange", scheduleUpdate);
   window.addEventListener("load", function () {
     scheduleUpdate();
-    unlockBgAudioFromGesture();
+    applyAudioState();
   });
 })();
