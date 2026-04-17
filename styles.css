@@ -265,6 +265,13 @@ textarea,
   margin-bottom: 18px;
 }
 
+/* Contact/info: extend scroll time so the background lingers longer */
+.page--info {
+  min-height: 135vh;
+  min-height: 135svh;
+  padding-bottom: calc(clamp(60px, 12vh, 110px) + clamp(120px, 20vh, 240px));
+}
+
 /* Home: align hero to top; section jumps use header nav */
 .page--home {
   align-items: start;
