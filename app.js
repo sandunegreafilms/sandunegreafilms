@@ -98,29 +98,8 @@
     }
   }
 
-  function readOpacity(v) {
-    var s = v.style.opacity;
-    if (s !== "") return parseFloat(s);
-    return parseFloat(window.getComputedStyle(v).opacity) || 0;
-  }
-
-  function pickActiveVideo() {
-    if (!videos.length) return null;
-    var best = null;
-    var bestW = -1;
-    var i;
-    for (i = 0; i < videos.length; i++) {
-      var o = readOpacity(videos[i]);
-      if (o > bestW) {
-        bestW = o;
-        best = videos[i];
-      }
-    }
-    return bestW > 0.04 ? best : videos[0];
-  }
-
   var soundBtn = document.querySelector("[data-sound-toggle]");
-  var soundEnabled = false;
+  var soundEnabled = true;
 
   function setSoundUi() {
     if (!soundBtn) return;
@@ -128,14 +107,24 @@
     soundBtn.setAttribute("aria-pressed", soundEnabled ? "true" : "false");
   }
 
+  /** Home clip (first video) is the only audio source; info/portfolio stay muted but still crossfade visually. */
   function applyAudioState() {
     if (!videos.length) return;
-    var active = pickActiveVideo();
-    for (var i = 0; i < videos.length; i++) {
+    var i;
+    for (i = 0; i < videos.length; i++) {
       var v = videos[i];
-      var shouldHear = soundEnabled && v === active;
-      v.muted = !shouldHear;
-      v.volume = 0.9;
+      if (i === 0) {
+        v.muted = !soundEnabled;
+        v.volume = 0.9;
+        if (soundEnabled) {
+          try {
+            v.play();
+          } catch (_e) {}
+        }
+      } else {
+        v.muted = true;
+        v.volume = 0.9;
+      }
     }
   }
 
@@ -185,10 +174,25 @@
   updateChromeNav();
   applyAudioState();
 
+  /* Browsers block unmuted autoplay until a gesture; first tap/scroll path re-applies audio. */
+  function unlockBgAudioFromGesture() {
+    tryPlayAll();
+    applyAudioState();
+  }
+  document.addEventListener(
+    "pointerdown",
+    function onFirstPointer() {
+      document.removeEventListener("pointerdown", onFirstPointer, true);
+      unlockBgAudioFromGesture();
+    },
+    true
+  );
+
   window.addEventListener("scroll", scheduleUpdate, { passive: true });
   window.addEventListener("resize", scheduleUpdate);
   window.addEventListener("hashchange", scheduleUpdate);
   window.addEventListener("load", function () {
     scheduleUpdate();
+    unlockBgAudioFromGesture();
   });
 })();
