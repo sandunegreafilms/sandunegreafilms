@@ -2,21 +2,25 @@
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  var YOUTUBE_PLACEHOLDER = "https://youtube.com/watch?v=REPLACE_ME";
   var PORTFOLIO_INDEX = [
-    { title: "Tokyo drifter", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "Kandi kids", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "Emiko Shibamura", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "The monsters in my pocket", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "Stefan + Christy", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "FOOLISH ENDEAVOR", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "VOGUE BRASIL", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "Newberry park", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "UNDERWORLD - DARK & LONG", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "THE HOUSE INVICTUS", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "STROBE ENCOUNTER", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "LINDSEY STERLING", youtubeUrl: YOUTUBE_PLACEHOLDER },
-    { title: "MINISTRY OF TOMORROW", youtubeUrl: YOUTUBE_PLACEHOLDER }
+    { title: "Newberry Park — Trailer", youtubeUrl: "https://youtu.be/xNu2ziw02UM?si=oKVF3TQDlytuOpeI" },
+    { title: "House of the Unholy — Awards Preview", youtubeUrl: "https://youtu.be/Jh4Il03rOxI?si=Os0ZG6oRowY_P4p6" },
+    { title: "Akindo Fighter — Full Video", youtubeUrl: "https://youtu.be/sR9t_3WmNp8?si=Y3YVXfE4pOKPs-Sl" },
+    { title: "Akindo Fighter — Promo", youtubeUrl: "https://youtu.be/B06kd5M8ddM?si=3RoK2i2ZQ4zkQe9L" },
+    { title: "Encounter — PTSD", youtubeUrl: "https://youtu.be/Uzm4RfBRWxU?si=K83TewlxlMmHkKh8" },
+    { title: "Haley Reinhart — Honey There’s The Door (Editor)", youtubeUrl: "https://youtu.be/sADOjoNux9o?si=4QASJApWCw8qPzMX" },
+    { title: "Lindsey Sterling — Stampede (Editor)", youtubeUrl: "https://youtu.be/-9rdDeWzvsU?si=QhY2mn2CBpzmytoS" },
+    { title: "Ollie Gabriel — Running Man (Co-Editor)", youtubeUrl: "https://youtu.be/svGCiJLHCg0?si=H1HaqcnvJBKpsZyb" },
+
+    { title: "Tokyo drifter", youtubeUrl: null },
+    { title: "Kandi kids", youtubeUrl: null },
+    { title: "The monsters in my pocket", youtubeUrl: null },
+    { title: "Stefan + Christy", youtubeUrl: null },
+    { title: "FOOLISH ENDEAVOR", youtubeUrl: null },
+    { title: "VOGUE BRASIL", youtubeUrl: null },
+    { title: "UNDERWORLD - DARK & LONG", youtubeUrl: null },
+    { title: "STROBE", youtubeUrl: null },
+    { title: "MINISTRY OF TOMORROW", youtubeUrl: null }
   ];
 
   var list = document.getElementById("portfolio-index-list");
@@ -27,12 +31,18 @@
     for (var i = 0; i < PORTFOLIO_INDEX.length; i++) {
       var item = PORTFOLIO_INDEX[i];
       var li = document.createElement("li");
-      var a = document.createElement("a");
-      a.href = item.youtubeUrl || YOUTUBE_PLACEHOLDER;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.textContent = item.title;
-      li.appendChild(a);
+      if (item.youtubeUrl) {
+        var a = document.createElement("a");
+        a.href = item.youtubeUrl;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = item.title;
+        li.appendChild(a);
+      } else {
+        var span = document.createElement("span");
+        span.textContent = item.title;
+        li.appendChild(span);
+      }
       root.appendChild(li);
     }
   }
