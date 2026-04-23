@@ -2,25 +2,28 @@
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  var YOUTUBE_PLACEHOLDER = "https://youtube.com/watch?v=REPLACE_ME";
   var PORTFOLIO_INDEX = [
-    { title: "Newberry Park — Trailer", youtubeUrl: "https://youtu.be/xNu2ziw02UM?si=oKVF3TQDlytuOpeI" },
-    { title: "House of the Unholy — Awards Preview", youtubeUrl: "https://youtu.be/Jh4Il03rOxI?si=Os0ZG6oRowY_P4p6" },
-    { title: "Akindo Fighter — Full Video", youtubeUrl: "https://youtu.be/sR9t_3WmNp8?si=Y3YVXfE4pOKPs-Sl" },
-    { title: "Akindo Fighter — Promo", youtubeUrl: "https://youtu.be/B06kd5M8ddM?si=3RoK2i2ZQ4zkQe9L" },
-    { title: "Encounter — PTSD", youtubeUrl: "https://youtu.be/Uzm4RfBRWxU?si=K83TewlxlMmHkKh8" },
-    { title: "Haley Reinhart — Honey There’s The Door (Editor)", youtubeUrl: "https://youtu.be/sADOjoNux9o?si=4QASJApWCw8qPzMX" },
-    { title: "Lindsey Sterling — Stampede (Editor)", youtubeUrl: "https://youtu.be/-9rdDeWzvsU?si=QhY2mn2CBpzmytoS" },
-    { title: "Ollie Gabriel — Running Man (Co-Editor)", youtubeUrl: "https://youtu.be/svGCiJLHCg0?si=H1HaqcnvJBKpsZyb" },
-
+    // Keep the intentional "importance" order; only update specific titles/links.
     { title: "Tokyo drifter", youtubeUrl: null },
     { title: "Kandi kids", youtubeUrl: null },
+    { title: "Akindo Fighter — Full Video", youtubeUrl: "https://youtu.be/sR9t_3WmNp8?si=Y3YVXfE4pOKPs-Sl" },
     { title: "The monsters in my pocket", youtubeUrl: null },
     { title: "Stefan + Christy", youtubeUrl: null },
     { title: "FOOLISH ENDEAVOR", youtubeUrl: null },
     { title: "VOGUE BRASIL", youtubeUrl: null },
+    { title: "Newberry Park — Trailer", youtubeUrl: "https://youtu.be/xNu2ziw02UM?si=oKVF3TQDlytuOpeI" },
     { title: "UNDERWORLD - DARK & LONG", youtubeUrl: null },
+    { title: "House of the Unholy — Awards Preview", youtubeUrl: "https://youtu.be/Jh4Il03rOxI?si=Os0ZG6oRowY_P4p6" },
     { title: "STROBE", youtubeUrl: null },
-    { title: "MINISTRY OF TOMORROW", youtubeUrl: null }
+    { title: "Encounter — PTSD", youtubeUrl: "https://youtu.be/Uzm4RfBRWxU?si=K83TewlxlMmHkKh8" },
+    { title: "Lindsey Sterling — Stampede (Editor)", youtubeUrl: "https://youtu.be/-9rdDeWzvsU?si=QhY2mn2CBpzmytoS" },
+    { title: "MINISTRY OF TOMORROW", youtubeUrl: null },
+
+    // New additions can tag onto the bottom.
+    { title: "Haley Reinhart — Honey There’s The Door (Editor)", youtubeUrl: "https://youtu.be/sADOjoNux9o?si=4QASJApWCw8qPzMX" },
+    { title: "Ollie Gabriel — Running Man (Co-Editor)", youtubeUrl: "https://youtu.be/svGCiJLHCg0?si=H1HaqcnvJBKpsZyb" },
+    { title: "Akindo Fighter — Promo", youtubeUrl: "https://youtu.be/B06kd5M8ddM?si=3RoK2i2ZQ4zkQe9L" }
   ];
 
   var list = document.getElementById("portfolio-index-list");
@@ -33,7 +36,7 @@
       var li = document.createElement("li");
       if (item.youtubeUrl) {
         var a = document.createElement("a");
-        a.href = item.youtubeUrl;
+        a.href = item.youtubeUrl || YOUTUBE_PLACEHOLDER;
         a.target = "_blank";
         a.rel = "noopener noreferrer";
         a.textContent = item.title;
